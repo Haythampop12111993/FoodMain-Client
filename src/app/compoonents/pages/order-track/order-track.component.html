@@ -1,0 +1,90 @@
+<div class="container">
+  @if (order) {
+  <div class="row my-4 justify-center">
+    <div class="col-12 col-lg-6">
+      <h2 class="text-center">Order #{{ order._id }}</h2>
+      <div class="my-3 fs-5">
+        <ul>
+          <li class="capitalize">Name: {{ userName }}</li>
+          <li class="my-3 capitalize">Address: {{ userAddress }}</li>
+        </ul>
+        <div class="my-3">
+          <strong>Order Items</strong>
+          <div class="mt-2 p-2 border-1 spinner-border-sm">
+            <div class="text-center">
+              <div class="my-2 d-flex justify-start align-items-center gap-3">
+                <div class="flex-[0.2]">
+                  <p class="fs-6">Image</p>
+                </div>
+                <div class="fs-6 flex-[0.3]">
+                  <p>food Name</p>
+                </div>
+                <div class="fs-6 flex-[0.2]">
+                  <p>Quantity</p>
+                </div>
+                <div class="fs-6 flex-[0.2]">
+                  <p>Price</p>
+                </div>
+                <div class="fs-6 flex-[0.2]">
+                  <p>Total Price</p>
+                </div>
+              </div>
+            </div>
+            @for (item of order.order; track $index) {
+            <div class="text-center">
+              <div class="my-2 d-flex justify-start align-items-center gap-3">
+                <div
+                  class="flex-[0.2] d-flex justify-center align-items-center"
+                >
+                  <img style="width: 60px" [src]="item.foodImage" alt="" />
+                </div>
+                <div class="fs-6 flex-[0.3]">
+                  <p>{{ item.foodId.name }}</p>
+                </div>
+                <div class="fs-6 flex-[0.2]">
+                  <p>{{ item.quantity }}</p>
+                </div>
+                <div class="fs-6 flex-[0.2]">
+                  <p>{{ item.foodId.price }}</p>
+                </div>
+                <div class="fs-6 flex-[0.2]">
+                  <p>{{ item.totalPrice }}</p>
+                </div>
+              </div>
+            </div>
+            }
+            <div
+              class="fs-6 my-3 d-flex flex-column justify-center align-items-center border-t-2 pt-3"
+            >
+              <p>OrderCost : {{ orderCost | currency }}</p>
+              <p>Delivery Cost : {{ deliveryCost | currency }}</p>
+              <p>Total Cost : {{ orderCost + deliveryCost | currency }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <h2 class="text-center">Order Details</h2>
+      <div class="my-3 fs-5 d-flex flex-column gap-2">
+        <div>
+          <strong>Data</strong> : {{ order.createdAt | date : "medium" }}
+        </div>
+        <div><strong>Status</strong> : {{ order.status }}</div>
+        <div><strong>Total</strong> : {{ order.AllTotalPrice | currency }}</div>
+        <div><strong>Payment Method</strong> : {{ order.paymentMethod }}</div>
+        <div><strong>Payment ID</strong> : {{ order.paymentId }}</div>
+        <div>
+          <h2>Order Delivery To</h2>
+          <div class="overflow-auto">
+            <app-map
+              [addressLatLng]="order.addressLatLng"
+              [readOnly]="true"
+            ></app-map>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

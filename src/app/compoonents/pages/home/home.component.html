@@ -1,0 +1,89 @@
+<!--
+  This example requires some changes to your config:
+
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/aspect-ratio'),
+    ],
+  }
+  ```
+-->
+
+<div class="bg-white">
+  <div
+    class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
+  >
+    <div class="d-flex my-3 w-50 mx-auto mb-4">
+      <input
+        class="form-control rounded-full bg-slate-400 focus:bg-slate-300"
+        type="text"
+        (keyup)="search($event)"
+        placeholder="Search Food Main!"
+        name="search"
+        [(ngModel)]="searchKey"
+      />
+    </div>
+    <app-tags-bar (tag)="selectedTag($event)"></app-tags-bar>
+    <!-- <h2 class="sr-only">Products</h2> -->
+    @if (isLoading()) {
+    <div
+      [ngClass]="{
+        'grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8':
+          foods().length > 0
+      }"
+    >
+      @for (item of foods() | paginate: { itemsPerPage: foods().length,
+      currentPage: page, totalItems: totalPages * foods().length } ; track
+      $index) {
+      <app-card-item [foodItem]="item"></app-card-item>
+      }@empty {
+      <div class="flex-grow-1 text-center justify-center mt-5">
+        <p class="text-lg font-semibold">
+          <span class="text-gray-800"> Food Not Found </span>
+        </p>
+      </div>
+      }
+    </div>
+    }@else {
+    <div class="row" aria-hidden="true"></div>
+    <div class="card col-12 col-md-6 col-lg-3" aria-hidden="true">
+      <img
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAADICAYAAADBXvybAAAAAXNSR0IArs4c6QAABTRJREFUeF7t08ENhDAUxNAgcc49/bdDJ0iUAKulDPwipQB7vrfjOJ7hMcDApw1sQv/0vuAYeA0I3SEwEDAg9MDIEBkQuhtgIGBA6IGRITIgdDfAQMCA0AMjQ2RA6G6AgYABoQdGhsiA0N0AAwEDQg+MDJEBobsBBgIGhB4YGSIDQncDDAQMCD0wMkQGhO4GGAgYEHpgZIgMCN0NMBAwIPTAyBAZELobYCBgQOiBkSEyIHQ3wEDAgNADI0NkQOhugIGAAaEHRobIgNDdAAMBA0IPjAyRAaG7AQYCBoQeGBkiA0J3AwwEDAg9MDJEBoTuBhgIGBB6YGSIDAjdDTAQMCD0wMgQGRC6G2AgYEDogZEhMiB0N8BAwIDQAyNDZEDoboCBgAGhB0aGyIDQ3QADAQNCD4wMkQGhuwEGAgaEHhgZIgNCdwMMBAwIPTAyRAaE7gYYCBgQemBkiAwI3Q0wEDAg9MDIEBkQuhtgIGBA6IGRITIgdDfAQMCA0AMjQ2RA6G6AgYABoQdGhsiA0N0AAwEDQg+MDJEBobsBBgIGhB4YGSIDQncDDAQMCD0wMkQGhO4GGAgYEHpgZIgMCN0NMBAwIPTAyBAZELobYCBgQOiBkSEyIHQ3wEDAgNADI0NkQOhugIGAAaEHRobIgNDdAAMBA0IPjAyRAaG7AQYCBoQeGBkiA0J3AwwEDAg9MDJEBoTuBhgIGBB6YGSIDAjdDTAQMCD0wMgQGRC6G2AgYEDogZEhMiB0N8BAwIDQAyNDZEDoboCBgAGhB0aGyIDQ3QADAQNCD4wMkQGhuwEGAgaEHhgZIgNCdwMMBAwIPTAyRAaE7gYYCBgQemBkiAwI3Q0wEDAg9MDIf8Q551hrjfu+37/v+7iua5znGTHQxhR6e3/0EQNCjwwNs21A6O390UcMCD0yNMy2AaG390cfMSD0yNAw2waE3t4ffcSA0CNDw2wbEHp7f/QRA0KPDA2zbUDo7f3RRwwIPTI0zLYBobf3Rx8xIPTI0DDbBoTe3h99xIDQI0PDbBsQent/9BEDQo8MDbNtQOjt/dFHDAg9MjTMtgGht/dHHzEg9MjQMNsGhN7eH33EgNAjQ8NsGxB6e3/0EQNCjwwNs21A6O390UcMCD0yNMy2AaG390cfMSD0yNAw2waE3t4ffcSA0CNDw2wbEHp7f/QRA0KPDA2zbUDo7f3RRwwIPTI0zLYBobf3Rx8xIPTI0DDbBoTe3h99xIDQI0PDbBsQent/9BEDQo8MDbNtQOjt/dFHDAg9MjTMtgGht/dHHzEg9MjQMNsGhN7eH33EgNAjQ8NsGxB6e3/0EQNCjwwNs21A6O390UcMCD0yNMy2AaG390cfMSD0yNAw2waE3t4ffcSA0CNDw2wbEHp7f/QRA0KPDA2zbUDo7f3RRwwIPTI0zLYBobf3Rx8xIPTI0DDbBoTe3h99xIDQI0PDbBsQent/9BEDQo8MDbNtQOjt/dFHDAg9MjTMtgGht/dHHzEg9MjQMNsGhN7eH33EgNAjQ8NsGxB6e3/0EQNCjwwNs21A6O390UcMCD0yNMy2AaG390cfMSD0yNAw2waE3t4ffcSA0CNDw2wbEHp7f/QRA0KPDA2zbUDo7f3RRwwIPTI0zLYBobf3Rx8xIPTI0DDbBoTe3h99xIDQI0PDbBsQent/9BEDQo8MDbNtQOjt/dFHDAg9MjTMtgGht/dHHzEg9MjQMNsGhN7eH33EgNAjQ8NsGxB6e3/0EQNCjwwNs21A6O390UcMCD0yNMy2gR/5jLI/FeTduwAAAABJRU5ErkJggg=="
+        class="card-img-top w-100 h-[100] placeholder-glow"
+        alt=""
+      />
+      <div class="card-body placeholder-glow">
+        <h5 class="card-title placeholder-glow">
+          <span class="placeholder col-6"></span>
+        </h5>
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-4"></span>
+        </p>
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-10"></span>
+        </p>
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-6"></span>
+        </p>
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-5"></span>
+        </p>
+        <span class="placeholder col-7"></span>
+      </div>
+    </div>
+
+    }
+    <div class="d-flex justify-content-center mt-5">
+      <pagination-controls
+        (pageChange)="changePage($event)"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>
+
+<!-- ////////////////////////////// -->
+<app-cart [hidden]="!GlobleService.showCart"></app-cart>

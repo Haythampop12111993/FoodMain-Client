@@ -1,0 +1,69 @@
+<div class="container">
+  <div
+    class="row row-cols-1 row-cols-xl-2 my-4 justify-center align-items-center"
+  >
+    <div class="">
+      <h2 class="text-center">Order Summary</h2>
+      <div class="my-3 fs-5">
+        <ul>
+          <li class="capitalize">Name: {{ userName }}</li>
+          <li class="my-3 capitalize">Address: {{ userAddress }}</li>
+        </ul>
+      </div>
+      <div class="border-1 rounded-sm">
+        <div class="p-2">
+          <p class="fs-6 text-center">Order Items</p>
+          <div class="p-2">
+            <div
+              class="d-flex justify-content-center items-center gap-2 my-2 text-center fs-6"
+            >
+              <div style="width: 60px">
+                <p>Image</p>
+              </div>
+              <p class="capitalize flex-[0.4]">Name</p>
+              <p class="capitalize flex-[0.2]">Price</p>
+              <p class="capitalize flex-[0.2]">Quantity</p>
+              <p class="capitalize flex-[0.2]">Total</p>
+            </div>
+            @for (item of userOrderData.order; track $index) {
+            <div
+              class="d-flex justify-content-center items-center gap-2 my-2 text-center"
+            >
+              <div style="width: 60px">
+                <img [src]="item.foodImage" alt="food image" class="w-100" />
+              </div>
+              <p class="capitalize flex-[0.4]">{{ item.foodId.name }}</p>
+              <p class="capitalize flex-[0.2]">
+                {{ item.foodId.price | currency }}
+              </p>
+              <p class="capitalize flex-[0.2]">{{ item.quantity }}</p>
+              <p class="capitalize flex-[0.2]">
+                {{ item.totalPrice | currency }}
+              </p>
+            </div>
+            }
+          </div>
+          <p class="text-end p-2 fs-6">
+            Total Price: {{ userOrderData.AllTotalPrice | currency }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center d-flex flex-col justify-center align-items-center">
+      <h2>Shipping Address</h2>
+      <div class="overflow-x-auto">
+        <div class="w-[500px]">
+          <app-map
+            [addressLatLng]="userOrderData.addressLatLng"
+            [readOnly]="true"
+          ></app-map>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container my-5 d-flex justify-center">
+  <div class="buttons flex-[0.5]">
+    <app-paypal-button [order]="userOrderData"></app-paypal-button>
+  </div>
+</div>

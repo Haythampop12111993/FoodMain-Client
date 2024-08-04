@@ -1,0 +1,54 @@
+<div
+  class="bg-gray-300 rounded-2 p-1 cursor-pointer"
+  (click)="FoodView(foodItem)"
+>
+  <div class="bg-gray-200 rounded-s-full">
+    <a class="group">
+      <div
+        class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7"
+      >
+        <img
+          [src]="foodItem.foodImage"
+          alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+          class="h-[200px] w-full object-cover object-center group-hover:opacity-75"
+        />
+      </div>
+      <h3 class="mt-4 text-sm text-gray-700">{{ foodItem.name }}</h3>
+      <div class="flex flex-col items-start justify-start">
+        <p class="mt-1 text-lg font-medium text-gray-900">
+          {{ foodItem.price | currency }}
+        </p>
+        <p class="mt-1 text-lg font-medium text-gray-900">
+          Cook Time : {{ foodItem.cookingTime }} min
+        </p>
+
+        <p class="mt-1 text-lg font-medium text-gray-900">
+          Rating : {{ foodItem.stars }}
+        </p>
+        <div class="flex items-center gap-2 mt-2">
+          @for (origin of foodItem.origins; track $index) {
+          <span
+            class="inline-flex items-center rounded-full bg-gray-200 px-2 py-0.5 text-sm font-medium text-gray-800"
+          >
+            {{ origin }}</span
+          >
+          }
+        </div>
+        <div class="flex items-center gap-2 mt-2">
+          @for (tag of foodItem.tags; track $index) {
+          <span
+            class="inline-flex items-center rounded-full bg-gray-200 px-2 py-0.5 text-sm font-medium text-gray-800"
+          >
+            {{ tag }}</span
+          >
+          }
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- More products... -->
+@if (GlobleService.foodShow) {
+<app-food-quick-views></app-food-quick-views>
+}

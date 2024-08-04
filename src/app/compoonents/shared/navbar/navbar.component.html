@@ -1,0 +1,337 @@
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Food Mine!</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarScroll"
+      aria-controls="navbarScroll"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse ps-0 ps-lg-5" id="navbarScroll">
+      <ul
+        class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+        style="--bs-scroll-height: 100px"
+      >
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+      <div class="pe-0 pe-lg-3 pb-3 pb-lg-0">
+        <button mat-flat-button>Login</button>
+      </div>
+      <div
+        class="d-flex flex-column flex-lg-row justify-content-start justify-content-lg-center align-items-strat align-items-lg-center gap-3"
+      >
+        <div
+          style="
+            width: fit-content;
+            padding: 3px;
+            background-color: transparent;
+            border-radius: 50%;
+            outline: 2px solid rgb(143, 140, 140);
+          "
+        >
+          <div class="example-button-container">
+            <button
+              mat-fab
+              aria-label="Example icon button with a home icon"
+              [matMenuTriggerFor]="menu"
+            >
+              <img
+                style="width: 100%"
+                src="https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png"
+                alt=""
+              />
+            </button>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Profile</button>
+            <button mat-menu-item>Orders</button>
+            <button mat-menu-item>Logout</button>
+          </mat-menu>
+        </div>
+        <div class="demo-section">
+          <button
+            mat-raised-button
+            color="primary"
+            [matBadge]="cartItemsNumber"
+            matBadgePosition="after"
+            matBadgeColor="accent"
+          >
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <span style="margin-right: 5px">Cart</span>
+              <i class="pi pi-shopping-cart" style="font-size: 1.5rem"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav> -->
+<!-- /////////////////////////////////////////////////// -->
+<nav class="bg-gray-800">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button
+          (click)="showMenu = !showMenu"
+          type="button"
+          class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <span class="absolute -inset-0.5"></span>
+          <span class="sr-only">Open main menu</span>
+          <!--
+            Icon when menu is closed.
+
+            Menu open: "hidden", Menu closed: "block"
+          -->
+          <svg
+            class="block h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+          <!--
+            Icon when menu is open.
+
+            Menu open: "block", Menu closed: "hidden"
+          -->
+          <svg
+            class="hidden h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+      >
+        <div class="flex flex-shrink-0 items-center">
+          <h4 class="text-white mb-0">FoodMain!</h4>
+        </div>
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a
+              routerLink="home"
+              routerLinkActive="bg-gray-900 text-white"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              aria-current="page"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              >Team</a
+            >
+            <a
+              href="#"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              >Projects</a
+            >
+            <a
+              href="#"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              >Calendar</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <!-- <button
+          type="button"
+          class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+        >
+          <span class="absolute -inset-1.5"></span>
+          <span class="sr-only">View notifications</span>
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+            />
+          </svg>
+        </button> -->
+        @if (GlobleService.isLogin) {
+        <div class="ml-4 flow-root lg:ml-6 cursor-pointer">
+          <a (click)="clickCart()" class="group -m-2 flex items-center p-2">
+            <svg
+              class="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+              />
+            </svg>
+            <span
+              class="ml-2 text-sm font-medium pt-1 text-gray-400 group-hover:text-white"
+              >{{
+                GlobleService.cartItemsNumber <= 0
+                  ? ""
+                  : GlobleService.cartItemsNumber
+              }}</span
+            >
+            <span class="sr-only">items in cart, view bag</span>
+          </a>
+        </div>
+        }
+
+        <!-- Profile dropdown -->
+        @if (GlobleService.isLogin) {
+        <div class="relative ml-3">
+          <div>
+            <button
+              (click)="showUserMenu = !showUserMenu"
+              type="button"
+              class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              id="user-menu-button"
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              <span class="sr-only">Open user menu</span>
+              <img
+                class="h-[40px] w-[40px] rounded-full"
+                [src]="GlobleService.userImg"
+                alt="user image"
+              />
+            </button>
+          </div>
+
+          <!--
+
+            Dropdown menu, show/hide based on menu state.
+
+            Entering: "transition ease-out duration-100"
+              From: "transform opacity-0 scale-95"
+              To: "transform opacity-100 scale-100"
+            Leaving: "transition ease-in duration-75"
+              From: "transform opacity-100 scale-100"
+              To: "transform opacity-0 scale-95"
+          -->
+          <div
+            [hidden]="showUserMenu"
+            class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu-button"
+            tabindex="-1"
+          >
+            <!-- Active: "bg-gray-100", Not Active: "" -->
+            <a
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
+              role="menuitem"
+              tabindex="-1"
+              id="user-menu-item-0"
+              >Your Profile</a
+            >
+            <a
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
+              role="menuitem"
+              tabindex="-1"
+              id="user-menu-item-1"
+              >Settings</a
+            >
+            <a
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
+              role="menuitem"
+              tabindex="-1"
+              id="user-menu-item-2"
+              (click)="logout()"
+              >Sign out</a
+            >
+          </div>
+        </div>
+        }@else {
+        <a
+          [routerLink]="['/login']"
+          routerLinkActive="bg-gray-900 text-white"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+          >Sign in</a
+        >
+        } @if ( GlobleService.isLogin && GlobleService.isCheckout) {
+        <a
+          [routerLink]="['/checkout']"
+          routerLinkActive="bg-gray-900 text-white"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md p-1 ml-2 text-base font-medium"
+          ><img src="assets/check-out.png" alt="" style="width: 40px"
+        /></a>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div [hidden]="showMenu" class="sm:hidden" id="mobile-menu">
+    <div class="space-y-1 px-2 pb-3 pt-2">
+      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <a
+        href="#"
+        class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+        aria-current="page"
+        >Dashboard</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+        >Team</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+        >Projects</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+        >Calendar</a
+      >
+    </div>
+  </div>
+</nav>
+<!-- /////////////////////////// -->

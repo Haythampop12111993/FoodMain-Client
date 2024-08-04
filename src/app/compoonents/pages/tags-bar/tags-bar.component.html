@@ -1,0 +1,12 @@
+<div class="d-flex justify-center align-items-center gap-2 mb-4">
+  @for (tag of tagsArray; track $index) {
+  <button
+    #tag
+    class="btn btn-outline-secondary"
+    (click)="Selected(tag.name)"
+    [ngClass]="{ active: tag.name === selectedTag }"
+  >
+    {{ tag.name }}
+  </button>
+  }
+</div>

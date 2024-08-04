@@ -1,0 +1,270 @@
+<section class="dark:bg-gray-900 mt-[100px]">
+  <div
+    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+  >
+    <div
+      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1
+          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center"
+        >
+          Create an account
+        </h1>
+        <form
+          class="space-y-4 md:space-y-6"
+          [formGroup]="registerFormData"
+          (submit)="handelRegisterForm()"
+        >
+          <div>
+            <label
+              for="name"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Your name</label
+            >
+            <input
+              formControlName="name"
+              type="string"
+              name="name"
+              id="name"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="name"
+            />
+            @if (control.name.touched && control.name.invalid) { @if
+            (control.name.errors?.["required"]) {
+            <div class="text-red-500 pt-1">Name is required</div>
+            } @if (control.name.errors?.["minlength"]) {
+            <div class="text-red-500 pt-1">
+              Name must be at least 3 characters
+            </div>
+
+            } }
+          </div>
+
+          <div>
+            <label
+              for="email"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Your email</label
+            >
+            <input
+              formControlName="email"
+              type="email"
+              name="email"
+              id="email"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="name@company.com"
+              required=""
+            />
+            @if (control.email.touched && control.email.invalid) { @if
+            (control.email.errors?.["required"]) {
+            <div class="text-red-500 pt-1">Email is required</div>
+            } } @if (control.email.errors?.["pattern"]) {
+            <div class="text-red-500 pt-1">Email is not valid</div>
+            }
+          </div>
+
+          <div>
+            <label
+              for="password"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Password</label
+            >
+            <input
+              formControlName="password"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="••••••••"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            @if (control.password.touched && control.password.invalid) { @if
+            (control.password.errors?.["required"]) {
+            <div class="text-red-500 pt-1">Password is required</div>
+            } @if (control.password.errors?.["minlength"]) {
+            <div class="text-info pt-1">
+              Password must be at least 8 characters
+            </div>
+            } @if (control.password.errors?.["pattern"]) {
+            <div class="text-info pt-1">
+              Password must contain at least one uppercase letter, one lowercase
+              letter, one number and one special character
+            </div>
+            } }
+          </div>
+
+          <div>
+            <label
+              for="confirmPassword"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Confirm password</label
+            >
+            <input
+              formControlName="confirmPassword"
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="••••••••"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            @if (control.confirmPassword.touched &&
+            control.confirmPassword.invalid) { @if
+            (control.confirmPassword.errors?.["required"]) {
+            <div class="text-red-500 pt-1">Confirm password is required</div>
+            } } @if (control.confirmPassword.touched && control.password.value
+            !== control.confirmPassword.value) {
+            <div class="text-red-500 pt-1">
+              Password and confirm password must be the same
+            </div>
+
+            }
+          </div>
+          <div>
+            <label
+              for="confirm-password"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Phone number</label
+            >
+            <input
+              formControlName="phone"
+              type="string"
+              name="phone"
+              id="phone"
+              placeholder="01234567890"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+          @if (control.phone.touched && control.phone.invalid) { @if
+          (control.phone.errors?.["required"]) {
+          <div class="text-red-500 pt-1">Phone number is required</div>
+          } }
+          <div>
+            <form [formGroup]="registerFormData.controls.address">
+              <label
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                for="address"
+                >Address</label
+              >
+              <div class="flex flex-col gap-2 mt-2">
+                <label for="street">Street</label>
+                <input
+                  formControlName="street"
+                  type="string"
+                  id="street"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+                @if (control.address.controls.street.touched &&
+                control.address.controls.street.invalid) { @if
+                (control.address.controls.street.errors?.["required"]) {
+                <div class="text-red-500 pt-1">Street is required</div>
+                } }
+                <label for="country">Country</label>
+                <select
+                  formControlName="country"
+                  name="country"
+                  id="country"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option disabled selected>Select Country</option>
+                  @for (country of AllCountry; track $index) {
+                  <option [value]="country.name">
+                    {{ country.name }}
+                  </option>
+                  }
+                </select>
+                @if (control.address.controls.country.touched &&
+                control.address.controls.country.invalid) { @if
+                (control.address.controls.country.errors?.["required"]) {
+                <div class="text-red-500 pt-1">Country is required</div>
+                } }
+                <label for="city">City</label>
+                <input
+                  formControlName="city"
+                  type="string"
+                  name="city"
+                  id="city"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+                @if (control.address.controls.city.touched &&
+                control.address.controls.city.invalid) { @if
+                (control.address.controls.city.errors?.["required"]) {
+                <div class="text-red-500 pt-1">City is required</div>
+                } }
+              </div>
+            </form>
+          </div>
+
+          <div>
+            <label
+              for="gender"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Gender</label
+            >
+            <div class="flex items-center gap-2">
+              <input
+                type="radio"
+                name="gender"
+                id="male"
+                value="male"
+                formControlName="gender"
+              />
+              <label for="male">Male</label>
+
+              <input
+                type="radio"
+                name="gender"
+                id="female"
+                value="female"
+                formControlName="gender"
+              />
+              <label for="female">Female</label>
+            </div>
+            @if (control.gender.touched && control.gender.invalid) { @if
+            (control.gender.errors?.["required"]) {
+            <div class="text-red-500 pt-1">Gender is required</div>
+            } }
+          </div>
+
+          <!-- <div class="flex items-start">
+            <div class="flex items-center h-5">
+              <input
+                id="terms"
+                aria-describedby="terms"
+                type="checkbox"
+                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+              />
+            </div>
+
+            <div class="ml-3 text-sm">
+              <label
+                for="terms"
+                class="font-light text-gray-500 dark:text-gray-300"
+                >I accept the
+                <a
+                  class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  href="#"
+                  >Terms and Conditions</a
+                ></label
+              >
+            </div>
+          </div> -->
+          <button
+            [disabled]="registerFormData.invalid"
+            type="submit"
+            class="w-full text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          >
+            Create an account
+          </button>
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            Already have an account?
+            <a
+              routerLink="/login"
+              class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+              >Login here</a
+            >
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

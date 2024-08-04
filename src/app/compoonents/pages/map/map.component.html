@@ -1,0 +1,8 @@
+<div class="mapContainer">
+  @if (!readOnly) {
+  <div class="d-flex justify-center items-center find-location">
+    <button class="" (click)="findMyLocation()">Find My Location</button>
+  </div>
+  }
+  <div #map class="map"></div>
+</div>
